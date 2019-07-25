@@ -1,0 +1,35 @@
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_i = 1
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+hook_add='''
+let g:user_emmet_settings= {
+\  'variables': {
+\    'lang': "ja"
+\  },
+\  'javascript': {
+\    'extends': 'jsx',
+\  }
+\}
+autocmd FileType html,css,javascript,jsx EmmetInstall
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add='''
+map <C-m> :NERDTreeToggle<CR>
+'''
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+
+[[plugins]]
+repo = 'nixprime/cpsm'
+build = 'env PY3=ON ./install.sh'
+
