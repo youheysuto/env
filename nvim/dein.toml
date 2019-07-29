@@ -1,4 +1,11 @@
 [[plugins]]
+repo = 'neoclide/coc.nvim'
+build = './install.sh nightly'
+hook_add = '''
+  source ~/.config/nvim/plugin_settings/coc.rc.vim
+'''
+
+[[plugins]]
 repo='Shougo/denite.nvim'
 on_cmd = ['Denite', 'DeniteBufferDir', 'DeniteCursorWord']
 on_func = ['denite#']
@@ -7,44 +14,19 @@ hook_add='''
 '''
 
 [[plugins]]
-repo      = 'neoclide/denite-git'
-on_source = ['denite.nvim']
-depends   = ['vim-easygit']
-
-[[plugins]]
-repo = 'neoclide/vim-easygit'
-hook_add='''
-let g:easygit_enable_command = 1
-'''
-
-[[plugins]]
-repo      = 'raghur/fruzzy'
-on_source = ['denite.nvim']
-hook_add  = ''' "{{{
-  let g:fruzzy#usenative = 1
-  let g:fruzzy#sortonempty = 0
-"}}} '''
-hook_post_update = 'call fruzzy#install()'
-
-[[plugins]]
-repo = 'neoclide/coc.nvim'
-build = './install.sh nightly'
+repo = 'sjl/badwolf'
 hook_add = '''
-  source ~/.config/nvim/plugin_settings/coc.rc.vim
-'''
-
-[[plugins]]
-repo = 'joshdick/onedark.vim'
-hook_add='''
 syntax on
-colorscheme onedark
+colorscheme badwolf
 '''
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
+depends=['vim-airline-themes']
 hook_add='''
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'badwolf'
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -55,14 +37,16 @@ endif
 
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
-hook_add='''
-let g:airline_theme='simple'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+    set diffopt+=vertical
+    nnoremap <silent> ,s :<C-u>Gstatus<CR>
+    nnoremap <silent> ,d :<C-u>Gdiff<CR>
+    nnoremap <silent> ,b :<C-u>Gblame<CR>
 '''
 
 [[plugins]]
-repo = 'fatih/vim-go'
-hook_add = '''
-  let g:go_fmt_command = "goimports"
-  let g:go_def_mapping_enabled = 0
-  let g:go_doc_keywordprg_enabled = 0
-'''
+repo = 'airblade/vim-gitgutter'
+

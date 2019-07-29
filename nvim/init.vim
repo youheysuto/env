@@ -6,13 +6,15 @@ if &compatible
   set nocompatible
 endif
 
-" Required:
-set runtimepath+=/Users/ricken31/.cache/dein/repos/github.com/Shougo/dein.vim
+" dein scripts start
+let s:dein_dir      = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:toml_dir = $HOME.'/.config/nvim/'
 
-let s:toml_dir = $HOME . '/.config/nvim/'
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('/Users/ricken31/.cache/dein')
-  call dein#begin('/Users/ricken31/.cache/dein')
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
     call dein#load_toml(s:toml_dir.'dein.toml',{'lazy':0})
     call dein#load_toml(s:toml_dir.'lazy.toml',{'lazy':1})
   call dein#end()
