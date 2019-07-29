@@ -57,3 +57,12 @@ hook_add = '''
   let g:memolist_path = "~/onedrive/docs/"
   let g:memolist_denite =1
 '''
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft=['markdown']
+hook_post_update = './app/install.sh'
+
