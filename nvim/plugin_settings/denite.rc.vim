@@ -51,7 +51,7 @@ call denite#custom#source('grep', 'matchers', ['matcher_ignore_globs'])
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
       \ [
       \ '.git/', 'build/', '__pycache__/','node_modules/',
-      \ 'images/', '*.o', '*.make',
+      \ 'images/', '*.o', '*.make', '*.png', '*.jpg', '*.PNG',
       \ '*.min.*',
       \ 'img/', 'fonts/'])
 

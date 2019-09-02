@@ -14,17 +14,6 @@ hook_add='''
 '''
 
 [[plugins]]
-repo      = 'neoclide/denite-git'
-on_source = ['denite.nvim']
-depends   = ['vim-easygit']
-
-[[plugins]]
-repo = 'neoclide/vim-easygit'
-hook_add='''
-let g:easygit_enable_command = 1
-'''
-
-[[plugins]]
 repo = 'Shougo/neosnippet.vim'
 hook_add='''
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
