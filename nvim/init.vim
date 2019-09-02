@@ -13,6 +13,9 @@ let s:toml_dir = $HOME.'/.config/nvim/'
 
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
+" set leader
+let mapleader = "\<space>"
+
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
     call dein#load_toml(s:toml_dir.'dein.toml',{'lazy':0})

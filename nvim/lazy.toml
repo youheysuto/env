@@ -13,7 +13,7 @@ let g:user_emmet_settings= {
 \    'extends': 'jsx',
 \  }
 \}
-autocmd FileType html,css,php,javascript,jsx EmmetInstall
+autocmd FileType html,css,php,javascript,jsx,markdown EmmetInstall
 '''
 
 [[plugins]]
@@ -22,7 +22,21 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add  = ''' "{{{
-map <C-m> :NERDTreeToggle<CR>
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeWinSize = 30
+let NERDTreeShowHidden=1
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+nnoremap <Leader>dir :NERDTreeTabsToggle<CR>
+augroup NERD
+    au!
+    autocmd VimEnter * NERDTree
+    autocmd VimEnter * wincmd p
+augroup END
 "}}} '''
 
 [[plugins]]
@@ -35,8 +49,25 @@ on_ft = ['toml']
 
 [[plugins]]
 repo = 'fatih/vim-go'
+on_ft='go'
 hook_add = '''
+  " build shortcut
+  autocmd FileType go nmap <leader>r <Plug>(go-run)
+  autocmd FileType go nmap <leader>t <Plug>(go-test)
+  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+  " run :GoBuild or :GoTestCompile based on the go file
+  function! s:build_go_files()
+    let l:file = expand('%')
+    if l:file =~# '^\f\+_test\.go$'
+      call go#test#Test(0, 1)
+    elseif l:file =~# '^\f\+\.go$'
+      call go#cmd#Build(0)
+    endif
+  endfunction
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
   let g:go_fmt_command = "goimports"
+  let g:go_term_mode = 'split'
   let g:go_def_mapping_enabled = 0
   let g:go_doc_keywordprg_enabled = 0
 '''
@@ -54,15 +85,36 @@ hook_post_update = 'call fruzzy#install()'
 repo = 'glidenote/memolist.vim'
 depends=['denite.nvim']
 hook_add = '''
-  let g:memolist_path = "~/onedrive/docs/"
+  let g:memolist_path = "~/Onedrive/docs/"
   let g:memolist_denite =1
 '''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
 
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
+depends=['open-browser.vim']
 on_ft=['markdown']
-hook_post_update = './app/install.sh'
+hook_post_update = './install.sh'
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft=['markdown']
+hook_add='''
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+'''
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+on_ft=['markdown']
+hook_add='''
+let g:table_mode_corner="|"
+'''
+
 
