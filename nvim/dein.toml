@@ -1,16 +1,15 @@
 [[plugins]]
-repo = 'neoclide/coc.nvim'
-build = './install.sh nightly'
+repo = 'junegunn/fzf.vim'
 hook_add = '''
-  source ~/.config/nvim/plugin_settings/coc.rc.vim
+source ~/.config/nvim/plugin_settings/fzf.rc.vim
 '''
 
 [[plugins]]
-repo='Shougo/denite.nvim'
-on_cmd = ['Denite', 'DeniteBufferDir', 'DeniteCursorWord']
-on_func = ['denite#']
-hook_add='''
-  source ~/.config/nvim/plugin_settings/denite.rc.vim
+repo = 'neoclide/coc.nvim'
+merged = 0
+rev = 'release'
+hook_add = '''
+  source ~/.config/nvim/plugin_settings/coc.rc.vim
 '''
 
 [[plugins]]
@@ -62,4 +61,18 @@ hook_add = '''
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'dense-analysis/ale'
+hook_add='''
+  let g:ale_fixers = {
+    \ 'ruby': ['rubocop'],
+    \ 'css': ['stylelint'],
+    \ 'javascript': ['eslint'],
+    \ 'vue': ['eslint']
+    \ }
+'''
 
