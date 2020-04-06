@@ -16,8 +16,8 @@ set wildmode=list:longest
 set ignorecase
 set wrapscan
 set hlsearch
-" set expandtab
-" set tabstop=2
+set expandtab
+set tabstop=2
 set shiftwidth=2
 set inccommand=split
 set clipboard=unnamed
